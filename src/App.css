@@ -1,0 +1,98 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+html{
+  background-color: #282c34;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #404753;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+  
+}
+
+.App-body{
+  background-color: #282c34;
+
+
+}
+
+.ini{
+  background-color: #282c34;
+  height: 95vh;
+  width: 100%;
+  color: #ffff;
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 200px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: #7c7c7c; /* Cor do texto */
+  background-color: #212529; /* Cor de fundo */
+  border-color: #212529; /* Cor da borda */
+
+  /* Estilos para hover */
+  &:hover {
+    color: #a8a8a8;
+    background-color: #5a5a5a;
+    border-color: #444444;
+  }
+
+  /* Estilos para foco (quando o link está selecionado) */
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(66, 70, 73, 0.5);
+  }
+
+  /* Estilos para ativo (quando o link está pressionado) */
+  &:active {
+    color: #505050;
+    background-color: #4d5154;
+    border-color: #373b3e;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+
+  /* Estilos para desativado */
+  &:disabled {
+    color: #525252;
+    background-color: #212529;
+    border-color: #212529;
+  }
+}

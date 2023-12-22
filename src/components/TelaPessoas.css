@@ -1,0 +1,22 @@
+.tela-pessoas-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .pesquisa {
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    text-align: center;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .btn {
+    margin: 5px;
+  }
+  

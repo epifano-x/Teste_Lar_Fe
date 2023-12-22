@@ -1,0 +1,13 @@
+# Ignorar arquivos de build
+build/
+dist/
+node_modules/
+
+# Ignorar arquivos de ambiente
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignorar arquivos específicos
+logs.txt
