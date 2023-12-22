@@ -18,7 +18,7 @@ function TelaPessoas({ voltarParaInicio }) {
   const carregarPessoas = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5109/Pessoa', {
+      const response = await axios.get('http://localhost:8080/Pessoa', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setPessoas(response.data);
@@ -39,7 +39,7 @@ function TelaPessoas({ voltarParaInicio }) {
   const handleSalvarEdicao = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5109/Pessoa/${pessoaEditando.id}`, pessoaEditando, {
+      await axios.put(`http://localhost:8080/Pessoa/${pessoaEditando.id}`, pessoaEditando, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setShowSuccessModal(true); // Exibe o modal de sucesso
@@ -57,7 +57,7 @@ function TelaPessoas({ voltarParaInicio }) {
   const handleDeletar = async (pessoaId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5109/Pessoa/${pessoaId}`, {
+      await axios.delete(`http://localhost:8080/Pessoa/${pessoaId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setShowSuccessModal(true); // Exibe o modal de sucesso

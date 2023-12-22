@@ -25,7 +25,7 @@ export default function Home() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5109/Usuario/authenticate', { username, password });
+      const response = await axios.post('http://localhost:8080/Usuario/authenticate', { username, password });
       const token = response.data.token;
       localStorage.setItem('token', token);
       setLoginSucesso(true); // Define que o login foi bem-sucedido

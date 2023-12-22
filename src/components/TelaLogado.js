@@ -29,7 +29,7 @@ function TelaLogado({ onLogout }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5109/Usuario', formDataUsuario, {
+      await axios.post('http://localhost:8080/Usuario', formDataUsuario, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -80,7 +80,7 @@ function TelaLogado({ onLogout }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5109/Pessoa', formData, {
+      await axios.post('http://localhost:8080/Pessoa', formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
