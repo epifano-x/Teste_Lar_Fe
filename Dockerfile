@@ -7,6 +7,8 @@ WORKDIR /app
 # Copie o package.json e o package-lock.json para o diretório de trabalho
 COPY package*.json ./
 
+RUN npm install @popperjs/core
+
 # Instale as dependências
 RUN npm update
 
@@ -15,6 +17,7 @@ COPY . .
 
 # Construa o aplicativo React
 RUN npm run build
+
 
 # Expõe a porta 80 para conexões externas
 EXPOSE 3000
