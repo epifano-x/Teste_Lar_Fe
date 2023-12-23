@@ -10,7 +10,13 @@ function TelaPessoas({ voltarParaInicio }) {
   const [showConfirmSalvarModal, setShowConfirmSalvarModal] = useState(false);
   const [showConfirmDeletarModal, setShowConfirmDeletarModal] = useState(false);
   const [idDeletando, setIdDeletando] = useState(null); // Para armazenar o ID ao deletar
-  
+  const [pessoaVisualizando, setPessoaVisualizando] = useState(null);
+  const [showVisualizarModal, setShowVisualizarModal] = useState(false);
+
+const handleVisualizar = (pessoa) => {
+  setPessoaVisualizando(pessoa);
+  setShowVisualizarModal(true);
+}; 
   useEffect(() => {
     carregarPessoas();
   }, []);
@@ -107,8 +113,20 @@ function TelaPessoas({ voltarParaInicio }) {
   );
 
   const formatarData = (dataString) => {
-    return dataString.split('T')[0];
+    // Checa se a data contém uma parte de tempo (indicado por 'T')
+    let data = dataString;
+    if (dataString.includes('T')) {
+      // Usa apenas a parte da data antes do 'T'
+      data = dataString.split('T')[0];
+    }
+  
+    // Divide a data em ano, mês e dia
+    const partes = data.split('-');
+  
+    // Retorna a data no formato "dia/mês/ano"
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
   };
+  
 
   const abrirModalSalvar = () => {
     setShowConfirmSalvarModal(true);
@@ -263,11 +281,12 @@ function TelaPessoas({ voltarParaInicio }) {
                 <tr key={pessoa.id}>
                   <td>{pessoa.nome}</td>
                   <td>{pessoa.cpf}</td>
-                  <td>{pessoa.dataNascimento}</td>
+                  <td>{formatarData(pessoa.dataNascimento)}</td>
                   <td>{pessoa.estaAtivo ? 'Sim' : 'Não'}</td>
                   <td>
                     <button className="btn btn-primary" onClick={() => handleEditar(pessoa)}>Editar</button>
                     <button className="btn btn-danger" onClick={() => abrirModalDeletar(pessoa.id)}>Deletar</button>
+                    <button className="btn btn-info" onClick={() => handleVisualizar(pessoa)}>Visualizar</button>
                   </td>
                 </tr>
               ))}
@@ -330,6 +349,40 @@ function TelaPessoas({ voltarParaInicio }) {
       titulo="Confirmar Exclusão"
       mensagem="Você tem certeza que deseja deletar esta pessoa?"
     />
+    {showVisualizarModal && (
+      <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(5px)' }}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title text-dark">Detalhes da Pessoa</h5>
+              <button type="button" className="btn-close" onClick={() => setShowVisualizarModal(false)}></button>
+            </div>
+            <div className="modal-body text-dark">
+              {/* Renderizar aqui os detalhes da pessoa */}
+              <p>Nome: {pessoaVisualizando.nome}</p>
+              <p>CPF: {pessoaVisualizando.cpf}</p>
+              <p>Data de Nascimento: {formatarData(pessoaVisualizando.dataNascimento)}</p>
+              <p>Ativo: {pessoaVisualizando.estaAtivo ? 'Sim' : 'Não'}</p>
+              <br></br>
+              <h5>Telefones:</h5>
+              <h5>_______________________________</h5>
+              {pessoaVisualizando.telefones && pessoaVisualizando.telefones.map((telefone, index) => (
+                <div key={index}>
+                  <p>Número: {telefone.numero}</p>
+                  <p>Tipo: {telefone.tipo}</p>
+                  <p>WhatsApp: {telefone.isWhatsApp ? 'Sim' : 'Não'}</p>
+                  <h5>_______________________________</h5>
+                </div>
+              ))}
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={() => setShowVisualizarModal(false)}>Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
 
       <button className="btn btn-outline-secondary" onClick={voltarParaInicio}>Voltar para Início</button>
     </div>
